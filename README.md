@@ -1,6 +1,6 @@
 # Idolscraper
 
-A Scrapy-based tool to scrape and organize Japaneseidol group member profiles.
+A Scrapy-based tool to scrape and organize Japanese idol group member profiles.
 
 ## Description
 This project scrapes individual idol profiles from public pages of official websites or wikis, organizes the data neatly in folders by group and member, and saves everything in JSON format for easy database integration.

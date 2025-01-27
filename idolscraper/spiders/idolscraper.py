@@ -5,7 +5,7 @@ import json
 
 class IdolscraperSpider(scrapy.Spider):
     name = "idolscraper"
-    start_urls = ["https://jpop.fandom.com/wiki/CUTIE_STREET"]
+    start_urls = ["URL"]
 
     def parse(self, response):
         # extracts the group name from the <title> tag and sanitize the name
@@ -19,7 +19,7 @@ class IdolscraperSpider(scrapy.Spider):
 
         # loop through each member link
         for member_url in member_links:
-            member_url = "https://jpop.fandom.com" + member_url  # in this case, the links are stored as link stubs in the tags and need to be appended to the base URL
+            member_url = "URL" + member_url  # in this case, the links are stored as link stubs in the tags and need to be appended to the base URL
             yield response.follow(member_url, self.parse_member, meta={"group_path": group_folder})
 
     def parse_member(self, response):
