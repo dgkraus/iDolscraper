@@ -38,8 +38,18 @@ class IdolscraperSpider(scrapy.Spider):
         profile_content = response.css("div.pi-item.pi-data.pi-item-spacing.pi-border-color")
         for div in profile_content:
             key = div.css("::attr(data-source)").get()
-            value = div.css(".pi-data-value.pi-font::text").getall()
-            value = " ".join(value).strip()
+            
+            # Handle birthplace specifically
+            if key == "birthplace":
+                # Extract text from all <a> tags inside the div
+                value = div.css("div.pi-data-value.pi-font a::text").getall()
+                # Join them with commas
+                value = ", ".join([v.strip() for v in value if v.strip()])
+            else:
+                # General case for other keys
+                value = div.css(".pi-data-value.pi-font::text").getall()
+                value = " ".join(value).strip()
+            
             if key and value:
                 scraped_data[key] = value
 
